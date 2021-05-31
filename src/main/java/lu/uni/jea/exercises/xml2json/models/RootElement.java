@@ -14,9 +14,6 @@ import java.util.List;
 
 /**
  *
- * Define the root element of the XML file
- * Children's are Months objects
- *
  * @author Eric ROMANG
  * @professor Dr. Müller Volker
  * @subject UNI S6 JEA - Exercise 4 - XML2JSON

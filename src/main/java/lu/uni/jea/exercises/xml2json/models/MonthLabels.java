@@ -21,10 +21,15 @@ public class MonthLabels {
 
     private static final Logger logger = Logger.getLogger ( MonthLabels.class );
 
-    @JacksonXmlProperty(localName = "MonthLabel")
+    @JacksonXmlProperty(localName = "RowLabel")
     private MonthLabel monthLabel;
+    //private String monthLabelValue;
+
+    //@JacksonXmlProperty(isAttribute = true)
+    //private String id;
 
     // Getters and setters
+
 
     public MonthLabel getMonthLabel() {
         return monthLabel;
@@ -33,4 +38,23 @@ public class MonthLabels {
     public void setMonthLabel(MonthLabel monthLabel) {
         this.monthLabel = monthLabel;
     }
+
+
+    /**
+    public String getMonthLabelValue() {
+        return monthLabelValue;
+    }
+
+    public void setMonthLabelValue(String monthLabelValue) {
+        this.monthLabelValue = monthLabelValue;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+     */
 }

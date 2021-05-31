@@ -10,9 +10,6 @@ import java.util.List;
 
 /**
  *
- * Parse the months known as Rows in XML file
- * Children's are MonthInfo objects
- *
  * @author Eric ROMANG
  * @professor Dr. Müller Volker
  * @subject UNI S6 JEA - Exercise 4 - XML2JSON
@@ -29,9 +26,17 @@ public class Months {
     @JacksonXmlProperty(localName = "RowLabels")
     private MonthLabels monthLabels;
 
-    @JacksonXmlElementWrapper(localName = "Cells")
-    @JacksonXmlProperty(localName = "C")
-    private List<MonthCell> monthCell;
+    //@JacksonXmlElementWrapper(localName = "Cells")
+    //@JacksonXmlProperty(localName = "C")
+    //private List<MonthCell> monthCell;
+
+    // Default constructor
+    public Months() {}
+
+    // Constructor
+    public Months(MonthLabels monthLabels) {
+        this.monthLabels = monthLabels;
+    }
 
     // Getters and Setters
 
@@ -43,6 +48,7 @@ public class Months {
         this.monthLabels = monthLabels;
     }
 
+    /*
     public List<MonthCell> getMonthCell() {
         return monthCell;
     }
@@ -50,4 +56,6 @@ public class Months {
     public void setMonthCell(List<MonthCell> monthCell) {
         this.monthCell = monthCell;
     }
+
+     */
 }

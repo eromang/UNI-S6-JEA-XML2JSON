@@ -6,7 +6,16 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.apache.log4j.Logger;
 
+import java.util.Iterator;
 import java.util.List;
+
+/**
+ *
+ * @author Eric ROMANG
+ * @professor Dr. Müller Volker
+ * @subject UNI S6 JEA - Exercise 4 - XML2JSON
+ *
+ */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 //@JacksonXmlRootElement(localName = "Data") // We consider Data as the root element
@@ -14,9 +23,11 @@ public class MonthsData {
 
     private static final Logger logger = Logger.getLogger ( MonthsData.class );
 
+    // Define XML property for attribute rows
     @JacksonXmlProperty(isAttribute = true)
     private int rows;
 
+    // Define wrapper to use for months collection types
     @JacksonXmlElementWrapper(localName = "Rows")
     @JacksonXmlProperty(localName = "Row")
     private List<Months> months;

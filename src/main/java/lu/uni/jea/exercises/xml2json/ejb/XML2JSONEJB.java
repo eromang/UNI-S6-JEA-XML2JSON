@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -30,7 +31,8 @@ public class XML2JSONEJB implements XML2JSONEJBI {
     private static final String xmlFileName = "/res/statec.xml";
     private String xmlFileNameInput;
 
-    private List<Months> months;
+    private Months months;
+    private int monthListSize;
 
     /**
      * Read and deserialize XML file
@@ -55,17 +57,22 @@ public class XML2JSONEJB implements XML2JSONEJBI {
             logger.info("Nbr of rows: " + deserializedData.getMonthsData().getRows());
             logger.info("Nbr of months: " + deserializedData.getMonthsData().getMonths().size());
 
+            monthListSize = deserializedData.getMonthsData().getMonths().size();
+
             // Iterate through the months
 
-            /**
-            Iterator<Months> monthsIterator = deserializedData.getMonths().iterator();
+            Iterator<Months> monthsIterator = deserializedData.getMonthsData().getMonths().iterator();
+            int i = 0;
 
             while(monthsIterator.hasNext()) {
-                monthInfo  = monthsIterator.next().getMonthInfo();
-                logger.info("Month ID: " + monthInfo.getMonthLabels().getId());
-                logger.info("Month value: " + monthInfo.getMonthLabels().getMonthLabelValue());
+
+                i++;
+                Months months = new Months(monthsIterator.next().getMonthLabels());
+
+                logger.info("--------" + i + "----------");
+                logger.info("Month ID: " + months.getMonthLabels().getMonthLabel().getId());
+                logger.info("Month value: " + months.getMonthLabels().getMonthLabel().getMonthLabelValue());
             }
-             */
 
             in.close();
             bf.close();
