@@ -1,10 +1,19 @@
 package lu.uni.jea.exercises.xml2json.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
 import org.apache.log4j.Logger;
+
+/**
+ *
+ * @author Eric ROMANG
+ * @professor Dr. Müller Volker
+ * @subject UNI S6 JEA - Exercise 4 - XML2JSON
+ *
+ */
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 //@JacksonXmlRootElement(localName = "RowLabel")
@@ -13,9 +22,11 @@ public class MonthLabel {
     private static final Logger logger = Logger.getLogger ( MonthLabel.class );
 
     @JacksonXmlProperty(isAttribute = true)
+    @JsonProperty("month_id")
     private String id;
 
     @JacksonXmlText
+    @JsonProperty("month_date")
     private String monthLabelValue;
 
     // Getters and setters

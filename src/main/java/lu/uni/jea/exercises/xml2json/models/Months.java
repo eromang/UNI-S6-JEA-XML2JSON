@@ -1,6 +1,9 @@
 package lu.uni.jea.exercises.xml2json.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -24,10 +27,12 @@ public class Months {
 
     // Define XML property for element RowLabels
     @JacksonXmlProperty(localName = "RowLabels")
+    @JsonProperty("month_labels")
     private MonthLabels monthLabels;
 
     @JacksonXmlElementWrapper(localName = "Cells")
     @JacksonXmlProperty(localName = "C")
+    @JsonProperty("month_data")
     private List<MonthCell> monthCell;
 
     // Default constructor

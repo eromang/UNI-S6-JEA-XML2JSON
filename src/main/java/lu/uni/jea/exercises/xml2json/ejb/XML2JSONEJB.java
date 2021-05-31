@@ -1,6 +1,7 @@
 package lu.uni.jea.exercises.xml2json.ejb;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lu.uni.jea.exercises.xml2json.models.MonthCell;
 import lu.uni.jea.exercises.xml2json.models.Months;
@@ -43,7 +44,8 @@ public class XML2JSONEJB implements XML2JSONEJBI {
 
     public String deserializeFromXML() {
 
-        logger.info("Read XML File : " + xmlFileName);
+        // Debug
+        // logger.info("Read XML File : " + xmlFileName);
 
         try (InputStream in = getClass().getResourceAsStream(xmlFileName);
              BufferedReader bf = new BufferedReader(new InputStreamReader(in))){
@@ -56,6 +58,11 @@ public class XML2JSONEJB implements XML2JSONEJBI {
             // deserialize from the XML into a Months object
             RootElement deserializedData = xmlMapper.readValue(xmlFileNameInput, RootElement.class);
 
+            /**
+             * Debugging bellow
+             */
+
+            /*
             logger.info("Deserialized data lang: " + deserializedData.getLang());
             logger.info("Nbr of rows: " + deserializedData.getMonthsData().getRows());
             logger.info("Nbr of months: " + deserializedData.getMonthsData().getMonths().size());
@@ -71,7 +78,7 @@ public class XML2JSONEJB implements XML2JSONEJBI {
 
                 i++;
 
-                logger.info("--------" + i + "----------");
+                //logger.info("--------" + i + "----------");
 
                 Months months = new Months(monthsIterator.next().getMonthLabels(),
                         monthsIterator.next().getMonthCell());
@@ -89,9 +96,10 @@ public class XML2JSONEJB implements XML2JSONEJBI {
                 }
 
             }
+            */
 
             // Write JSON from XML
-            ObjectMapper mapper = new ObjectMapper();
+            ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);
             json = mapper.writeValueAsString(deserializedData);
 
             in.close();

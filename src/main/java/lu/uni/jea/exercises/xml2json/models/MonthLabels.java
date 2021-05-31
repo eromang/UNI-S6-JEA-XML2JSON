@@ -1,13 +1,12 @@
 package lu.uni.jea.exercises.xml2json.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
 import org.apache.log4j.Logger;
 
 /**
- *
- * Parse the month labels known as RowLabels in XML file
  *
  * @author Eric ROMANG
  * @professor Dr. Müller Volker
@@ -22,6 +21,7 @@ public class MonthLabels {
     private static final Logger logger = Logger.getLogger ( MonthLabels.class );
 
     @JacksonXmlProperty(localName = "RowLabel")
+    @JsonProperty("month_label")
     private MonthLabel monthLabel;
 
     // Getters and Setters

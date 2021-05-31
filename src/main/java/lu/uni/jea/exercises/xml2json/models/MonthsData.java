@@ -1,6 +1,8 @@
 package lu.uni.jea.exercises.xml2json.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
@@ -25,6 +27,7 @@ public class MonthsData {
 
     // Define XML property for attribute rows
     @JacksonXmlProperty(isAttribute = true)
+    @JsonProperty("total_months_number")
     private int rows;
 
     // Define wrapper to use for months collection types
