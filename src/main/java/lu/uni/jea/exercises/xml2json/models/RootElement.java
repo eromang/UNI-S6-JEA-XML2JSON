@@ -1,0 +1,54 @@
+package lu.uni.jea.exercises.xml2json.models;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
+import lu.uni.jea.exercises.xml2json.XML2JSON;
+import org.apache.log4j.Logger;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+/**
+ *
+ * Define the root element of the XML file
+ * Children's are Months objects
+ *
+ * @author Eric ROMANG
+ * @professor Dr. Müller Volker
+ * @subject UNI S6 JEA - Exercise 4 - XML2JSON
+ *
+ */
+
+@JsonIgnoreProperties(ignoreUnknown = true) // Ignore properties not defined in the POJO
+@JacksonXmlRootElement(localName = "CubeView") // We consider CubeView as the root element
+public class RootElement {
+
+    private static final Logger logger = Logger.getLogger ( RootElement.class );
+
+    // Define XML property for attribute lang
+    @JacksonXmlProperty(isAttribute = true)
+    private String lang;
+
+    // Define XML property for element Data
+    @JacksonXmlProperty(localName = "Data")
+    private MonthsData monthsData;
+
+    //Other getters and setters
+
+    public String getLang() {
+        return lang;
+    }
+
+    public MonthsData getMonthsData() {
+        return monthsData;
+    }
+
+    public void setMonthsData(MonthsData monthsData) {
+        this.monthsData = monthsData;
+    }
+
+}

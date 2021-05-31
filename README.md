@@ -62,4 +62,12 @@ There should also be a link provided on the view where the same result data can 
 
 - Row cols values are delimited in ``f="13 261" v="13261.4730171566"`` where f represent a rounded version of v
 
+### Models
 
+- Months
+  - monthID : ```id="L10"``` from RowLabel
+  - monthName : ```April 2021``` from RowLabel
+  
+- MonthDetails
+  - monthL0 : ```headers="L10 L0 "``` from Cells
+  - monthL0Value : ```v="13261.4730171566"```

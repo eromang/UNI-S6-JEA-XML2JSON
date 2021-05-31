@@ -22,7 +22,19 @@ public class XML2JSON implements Serializable {
 
     private static final Logger logger = Logger.getLogger ( XML2JSON.class );
 
+    private String readXMLFile;
+
     @EJB
     private XML2JSONEJBI xml2JSONEJBI;
 
+    // Getters and setters
+
+    public String getReadXMLFile() {
+        readXMLFile = xml2JSONEJBI.deserializeFromXML();
+
+        // Debug
+        //logger.info(readXMLFile);
+
+        return readXMLFile;
+    }
 }

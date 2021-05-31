@@ -9,4 +9,5 @@ package lu.uni.jea.exercises.xml2json.ejb;
  */
 
 public interface XML2JSONEJBI {
+    public String deserializeFromXML();
 }
