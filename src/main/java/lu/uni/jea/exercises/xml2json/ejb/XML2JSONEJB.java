@@ -1,5 +1,6 @@
 package lu.uni.jea.exercises.xml2json.ejb;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import lu.uni.jea.exercises.xml2json.models.MonthCell;
 import lu.uni.jea.exercises.xml2json.models.Months;
@@ -31,6 +32,7 @@ public class XML2JSONEJB implements XML2JSONEJBI {
     //  The XML file
     private static final String xmlFileName = "/res/statec.xml";
     private String xmlFileNameInput;
+    private String json;
 
     private Months months;
     private int monthListSize;
@@ -88,6 +90,10 @@ public class XML2JSONEJB implements XML2JSONEJBI {
 
             }
 
+            // Write JSON from XML
+            ObjectMapper mapper = new ObjectMapper();
+            json = mapper.writeValueAsString(deserializedData);
+
             in.close();
             bf.close();
 
@@ -96,7 +102,8 @@ public class XML2JSONEJB implements XML2JSONEJBI {
             logger.info("Error message: " + e.getMessage());
         }
 
-        return xmlFileNameInput;
+        //return xmlFileNameInput;
+        return json;
     }
 
 
