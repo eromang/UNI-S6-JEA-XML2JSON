@@ -1,6 +1,7 @@
 package lu.uni.jea.exercises.xml2json.ejb;
 
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import lu.uni.jea.exercises.xml2json.models.MonthCell;
 import lu.uni.jea.exercises.xml2json.models.Months;
 import lu.uni.jea.exercises.xml2json.models.RootElement;
 import org.apache.log4j.Logger;
@@ -67,11 +68,24 @@ public class XML2JSONEJB implements XML2JSONEJBI {
             while(monthsIterator.hasNext()) {
 
                 i++;
-                Months months = new Months(monthsIterator.next().getMonthLabels());
 
                 logger.info("--------" + i + "----------");
+
+                Months months = new Months(monthsIterator.next().getMonthLabels(),
+                        monthsIterator.next().getMonthCell());
+
                 logger.info("Month ID: " + months.getMonthLabels().getMonthLabel().getId());
                 logger.info("Month value: " + months.getMonthLabels().getMonthLabel().getMonthLabelValue());
+
+                // Iterator through the Cells (C) of the month
+
+                Iterator<MonthCell> monthCellIterator = months.getMonthCell().iterator();
+
+                while (monthCellIterator.hasNext()) {
+                    logger.info("Month cell header " + monthCellIterator.next().getCellHeader());
+                    logger.info("Month cell value " + monthCellIterator.next().getCellValue());
+                }
+
             }
 
             in.close();

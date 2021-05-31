@@ -26,16 +26,17 @@ public class Months {
     @JacksonXmlProperty(localName = "RowLabels")
     private MonthLabels monthLabels;
 
-    //@JacksonXmlElementWrapper(localName = "Cells")
-    //@JacksonXmlProperty(localName = "C")
-    //private List<MonthCell> monthCell;
+    @JacksonXmlElementWrapper(localName = "Cells")
+    @JacksonXmlProperty(localName = "C")
+    private List<MonthCell> monthCell;
 
     // Default constructor
     public Months() {}
 
     // Constructor
-    public Months(MonthLabels monthLabels) {
-        this.monthLabels = monthLabels;
+    public Months(MonthLabels monthLabels, List<MonthCell> monthCell) {
+        this.setMonthLabels(monthLabels);
+        this.setMonthCell(monthCell);
     }
 
     // Getters and Setters
@@ -48,7 +49,6 @@ public class Months {
         this.monthLabels = monthLabels;
     }
 
-    /*
     public List<MonthCell> getMonthCell() {
         return monthCell;
     }
@@ -56,6 +56,4 @@ public class Months {
     public void setMonthCell(List<MonthCell> monthCell) {
         this.monthCell = monthCell;
     }
-
-     */
 }

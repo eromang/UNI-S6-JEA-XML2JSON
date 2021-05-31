@@ -15,7 +15,6 @@ public class MonthLabel {
     @JacksonXmlProperty(isAttribute = true)
     private String id;
 
-    //@JacksonXmlProperty(localName = "RowLabel")
     @JacksonXmlText
     private String monthLabelValue;
 

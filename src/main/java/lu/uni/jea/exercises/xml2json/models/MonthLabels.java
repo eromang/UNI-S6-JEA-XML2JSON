@@ -23,13 +23,8 @@ public class MonthLabels {
 
     @JacksonXmlProperty(localName = "RowLabel")
     private MonthLabel monthLabel;
-    //private String monthLabelValue;
 
-    //@JacksonXmlProperty(isAttribute = true)
-    //private String id;
-
-    // Getters and setters
-
+    // Getters and Setters
 
     public MonthLabel getMonthLabel() {
         return monthLabel;
@@ -38,23 +33,4 @@ public class MonthLabels {
     public void setMonthLabel(MonthLabel monthLabel) {
         this.monthLabel = monthLabel;
     }
-
-
-    /**
-    public String getMonthLabelValue() {
-        return monthLabelValue;
-    }
-
-    public void setMonthLabelValue(String monthLabelValue) {
-        this.monthLabelValue = monthLabelValue;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-     */
 }
