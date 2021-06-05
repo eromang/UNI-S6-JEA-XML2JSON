@@ -24,6 +24,16 @@ public class MonthLabels {
     @JsonProperty("month_label")
     private MonthLabel monthLabel;
 
+    // Empty constructor
+
+    public MonthLabels() {}
+
+    // Constructor
+
+    public MonthLabels(MonthLabel monthLabel) {
+        this.setMonthLabel(monthLabel);
+    }
+
     // Getters and Setters
 
     public MonthLabel getMonthLabel() {

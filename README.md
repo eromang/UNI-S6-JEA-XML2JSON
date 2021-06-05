@@ -71,3 +71,12 @@ There should also be a link provided on the view where the same result data can 
 - MonthDetails
   - monthL0 : ```headers="L10 L0 "``` from Cells
   - monthL0Value : ```v="13261.4730171566"```
+  
+### 
+
+- RootElement(String lang, MonthsData monthsData) 
+- MonthsData(int rows, List<Months> months)
+- Months(MonthLabels monthLabels, List<MonthCell> monthCell)
+- MonthLabels(MonthLabel monthLabel)
+- MonthLabel(String id, String monthLabelValue)
+- MonthCell(String cellHeader, double cellValue)

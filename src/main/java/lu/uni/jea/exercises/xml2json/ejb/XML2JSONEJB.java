@@ -37,9 +37,14 @@ public class XML2JSONEJB implements XML2JSONEJBI {
 
     private Months months;
     private int monthListSize;
+    private String month;
+    private String year;
+
+    private String delimSpace = " ";
 
     /**
      * Read and deserialize XML file
+     * Return RootElement object deserializedData
      */
 
     public String deserializeFromXML() {
@@ -58,16 +63,14 @@ public class XML2JSONEJB implements XML2JSONEJBI {
             // deserialize from the XML into a Months object
             RootElement deserializedData = xmlMapper.readValue(xmlFileNameInput, RootElement.class);
 
-            /**
-             * Debugging bellow
-             */
-
             /*
             logger.info("Deserialized data lang: " + deserializedData.getLang());
             logger.info("Nbr of rows: " + deserializedData.getMonthsData().getRows());
             logger.info("Nbr of months: " + deserializedData.getMonthsData().getMonths().size());
 
             monthListSize = deserializedData.getMonthsData().getMonths().size();
+
+            */
 
             // Iterate through the months
 
@@ -83,20 +86,29 @@ public class XML2JSONEJB implements XML2JSONEJBI {
                 Months months = new Months(monthsIterator.next().getMonthLabels(),
                         monthsIterator.next().getMonthCell());
 
-                logger.info("Month ID: " + months.getMonthLabels().getMonthLabel().getId());
-                logger.info("Month value: " + months.getMonthLabels().getMonthLabel().getMonthLabelValue());
+                //logger.info("Month ID: " + months.getMonthLabels().getMonthLabel().getId());
+                //logger.info("Month value: " + months.getMonthLabels().getMonthLabel().getMonthLabelValue());
+
+                String[] arr1 = months.getMonthLabels().getMonthLabel().getMonthLabelValue().split(delimSpace);
+
+                month = arr1[0];
+                year = arr1[1];
+
+                //logger.info("Month value: " + month);
+                //logger.info("Year value: " + year);
 
                 // Iterator through the Cells (C) of the month
 
+                /**
                 Iterator<MonthCell> monthCellIterator = months.getMonthCell().iterator();
 
                 while (monthCellIterator.hasNext()) {
                     logger.info("Month cell header " + monthCellIterator.next().getCellHeader());
                     logger.info("Month cell value " + monthCellIterator.next().getCellValue());
                 }
+                 */
 
             }
-            */
 
             // Write JSON from XML
             ObjectMapper mapper = new ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT);

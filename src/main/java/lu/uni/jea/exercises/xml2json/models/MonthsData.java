@@ -35,6 +35,17 @@ public class MonthsData {
     @JacksonXmlProperty(localName = "Row")
     private List<Months> months;
 
+    // Empty Constructor
+
+    public MonthsData() {}
+
+    // Constructor
+
+    public MonthsData(int rows, List<Months> months) {
+        this.setRows(rows);
+        this.setMonths(months);
+    }
+
     // Getters and setters
 
     public int getRows() {

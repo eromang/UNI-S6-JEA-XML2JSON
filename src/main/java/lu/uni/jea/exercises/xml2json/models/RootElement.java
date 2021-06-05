@@ -38,10 +38,25 @@ public class RootElement {
     @JsonProperty("months_data")
     private MonthsData monthsData;
 
+    // Empty Constructor
+
+    public RootElement() {}
+
+    // Constructor
+
+    public RootElement(String lang, MonthsData monthsData) {
+        this.setLang(lang);
+        this.setMonthsData(monthsData);
+    }
+
     //Other getters and setters
 
     public String getLang() {
         return lang;
+    }
+
+    public void setLang(String lang) {
+        this.lang = lang;
     }
 
     public MonthsData getMonthsData() {

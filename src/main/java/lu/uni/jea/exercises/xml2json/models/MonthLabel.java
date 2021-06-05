@@ -29,6 +29,17 @@ public class MonthLabel {
     @JsonProperty("month_date")
     private String monthLabelValue;
 
+    // Empty constructor
+
+    public MonthLabel() {}
+
+    // Constructor
+
+    public MonthLabel(String id, String monthLabelValue) {
+        this.setId(id);
+        this.setMonthLabelValue(monthLabelValue);
+    }
+
     // Getters and setters
 
     public String getId() {

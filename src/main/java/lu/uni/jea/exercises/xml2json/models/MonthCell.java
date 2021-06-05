@@ -29,6 +29,17 @@ public class MonthCell {
     //@JsonProperty("month_data_value")
     private double cellValue;
 
+    // Empty constructor
+
+    public MonthCell() {}
+
+    // Constructor
+
+    public MonthCell(String cellHeader, double cellValue) {
+        this.setCellHeader(cellHeader);
+        this.setCellValue(cellValue);
+    }
+
     // Getters and Setters
 
     public String getCellHeader() {
