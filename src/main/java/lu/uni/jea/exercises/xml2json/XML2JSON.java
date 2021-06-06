@@ -9,6 +9,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -32,6 +34,7 @@ public class XML2JSON implements Serializable {
     private String returnFilteredJSON;
 
     private String searchedYears;
+    private List<String> searchedYearsList;
 
     @EJB
     private XML2JSONEJBI xml2JSONEJBI;
@@ -56,6 +59,8 @@ public class XML2JSON implements Serializable {
 
     public String returnFilteredJSON() throws JsonProcessingException {
 
+        searchedYearsList = new ArrayList<String>();
+
         this.setSearchedYears(searchedYears);
 
         String strComma[] = searchedYears.split(",");
@@ -67,10 +72,22 @@ public class XML2JSON implements Serializable {
 
         if (strComma.length > 1) {
             logger.info("Comma separated");
+            searchedYearsList = Arrays.asList(strComma);
         } else if (strDash.length > 1) {
             logger.info("Dash separated");
+            int start = Integer.parseInt(strDash[0]);
+            int end = Integer.parseInt(strDash[1]);
+
+            int yearsDiff = end - start;
+
+            for (int i = start; i <= end; i++ ) {
+                logger.info("Year : " + i);
+                searchedYearsList.add(String.valueOf(i));
+            }
+            //searchedYearsList = Arrays.asList(strDash);
         } else {
             logger.info("Not comma or dash separated");
+            searchedYearsList.add(searchedYears);
         }
 
         RootElement deserializedData = new RootElement();
@@ -82,7 +99,7 @@ public class XML2JSON implements Serializable {
         //xml2JSONEJBI.debug(deserializedData);
 
         // Create requested RootElement
-        createdRootElement = xml2JSONEJBI.createRootElement(deserializedData, searchedYears);
+        createdRootElement = xml2JSONEJBI.createRootElement(deserializedData, searchedYearsList);
 
         // Debug
         //xml2JSONEJBI.debug(createdRootElement);

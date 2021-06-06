@@ -38,6 +38,7 @@ public class XML2JSONEJB implements XML2JSONEJBI {
     private RootElement deserializedData;
     private RootElement createdRootElement;
     private String json;
+    private List<String> searchedYearsList;
 
     private Months months;
     private int monthListSize;
@@ -115,7 +116,7 @@ public class XML2JSONEJB implements XML2JSONEJBI {
         }
     }
 
-    public RootElement createRootElement(RootElement toCreatedRootElement, String searchedYear) {
+    public RootElement createRootElement(RootElement toCreatedRootElement, List<String> searchedYearsList) {
 
         // For testing purpose
         //String searchedYear = "2018";
@@ -139,40 +140,47 @@ public class XML2JSONEJB implements XML2JSONEJBI {
 
             //logger.info("Process " + months.getMonthLabels().getMonthLabel().getMonthLabelValue());
 
-            if (months.getMonthLabels().getMonthLabel().getMonthLabelValue().contains(searchedYear)) {
+            // Research for each occurrence in the searchedYearsList
 
-                nbrMatchingMonths++;
-                //logger.info("nbrMatchingMonths : " + nbrMatchingMonths);
+            //int searchedYearsListSize = searchedYearsList.size();
 
-                String monthLabelID = months.getMonthLabels().getMonthLabel().getId();
-                String monthLabelValue = months.getMonthLabels().getMonthLabel().getMonthLabelValue();
+            for(String searchedYear: searchedYearsList) {
 
-                MonthLabel monthLabelToAdd = new MonthLabel(monthLabelID,monthLabelValue);
+                if (months.getMonthLabels().getMonthLabel().getMonthLabelValue().contains(searchedYear)) {
 
-                MonthLabels monthLabelsToAdd = new MonthLabels(monthLabelToAdd);
+                    nbrMatchingMonths++;
+                    //logger.info("nbrMatchingMonths : " + nbrMatchingMonths);
 
-                // Iterate through the Cells (C) of the month
+                    String monthLabelID = months.getMonthLabels().getMonthLabel().getId();
+                    String monthLabelValue = months.getMonthLabels().getMonthLabel().getMonthLabelValue();
 
-                int nbrMonthCells = months.getMonthCell().size();
+                    MonthLabel monthLabelToAdd = new MonthLabel(monthLabelID, monthLabelValue);
 
-                int j = 0;
-                List<MonthCell> monthCellListToAdd = new ArrayList<>();
+                    MonthLabels monthLabelsToAdd = new MonthLabels(monthLabelToAdd);
 
-                while(j < nbrMonthCells) {
+                    // Iterate through the Cells (C) of the month
 
-                    String monthCellHeader = months.getMonthCell().get(j).getCellHeader();
-                    Double monthCellValue = months.getMonthCell().get(j).getCellValue();
+                    int nbrMonthCells = months.getMonthCell().size();
 
-                    MonthCell monthCellToAdd = new MonthCell(monthCellHeader, monthCellValue);
+                    int j = 0;
+                    List<MonthCell> monthCellListToAdd = new ArrayList<>();
 
-                    monthCellListToAdd.add(monthCellToAdd);
+                    while (j < nbrMonthCells) {
 
-                    j++;
+                        String monthCellHeader = months.getMonthCell().get(j).getCellHeader();
+                        Double monthCellValue = months.getMonthCell().get(j).getCellValue();
+
+                        MonthCell monthCellToAdd = new MonthCell(monthCellHeader, monthCellValue);
+
+                        monthCellListToAdd.add(monthCellToAdd);
+
+                        j++;
+                    }
+
+                    Months monthsToAdd = new Months(monthLabelsToAdd, monthCellListToAdd);
+                    monthsListToAdd.add(monthsToAdd);
+
                 }
-
-                Months monthsToAdd = new Months(monthLabelsToAdd, monthCellListToAdd);
-                monthsListToAdd.add(monthsToAdd);
-
             }
 
             i++;
