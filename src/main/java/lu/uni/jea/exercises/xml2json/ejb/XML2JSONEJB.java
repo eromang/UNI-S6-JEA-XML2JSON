@@ -14,6 +14,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -170,6 +171,14 @@ public class XML2JSONEJB implements XML2JSONEJBI {
                         String monthCellHeader = months.getMonthCell().get(j).getCellHeader();
                         Double monthCellValue = months.getMonthCell().get(j).getCellValue();
 
+                        String strSpace[] = monthCellHeader.split(" ");
+
+                        HashMap<String, String> cellHeaders = cellHeaders();
+
+                        if(cellHeaders.containsKey(strSpace[1])) {
+                            monthCellHeader = cellHeaders.get(strSpace[1]);
+                        }
+
                         MonthCell monthCellToAdd = new MonthCell(monthCellHeader, monthCellValue);
 
                         monthCellListToAdd.add(monthCellToAdd);
@@ -199,5 +208,23 @@ public class XML2JSONEJB implements XML2JSONEJBI {
         json = mapper.writeValueAsString(deserializedData);
 
         return json;
+    }
+
+    public HashMap<String, String> cellHeaders() {
+
+        HashMap<String, String> cellHeaders = new HashMap<String, String>();
+
+        cellHeaders.put("L0","Resident borderers");
+        cellHeaders.put("L1", "Non-resident borderers");
+        cellHeaders.put("L2", "National wage-earners");
+        cellHeaders.put("L3", "Domestic wage-earners (3 + 2 - 1)");
+        cellHeaders.put("L4", "National self-employment");
+        cellHeaders.put("L5", "Domestic self-employment");
+        cellHeaders.put("L6", "National employment (3 + 5)");
+        cellHeaders.put("L7", "Domestic employment (4 + 6)");
+        cellHeaders.put("L8", "Number of unemployed");
+        cellHeaders.put("L9", "Active population (7 + 9)");
+
+        return cellHeaders;
     }
 }
