@@ -36,12 +36,19 @@ public class Months {
     private List<MonthCell> monthCell;
 
     // Default constructor
-    public Months() {}
+    public Months() {
+        reset();
+    }
 
     // Constructor
     public Months(MonthLabels monthLabels, List<MonthCell> monthCell) {
         this.setMonthLabels(monthLabels);
         this.setMonthCell(monthCell);
+    }
+
+    public void reset() {
+        this.setMonthLabels(null);
+        this.setMonthCell(null);
     }
 
     // Getters and Setters

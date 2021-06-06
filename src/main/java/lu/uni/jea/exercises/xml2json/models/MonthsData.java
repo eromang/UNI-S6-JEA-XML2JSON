@@ -21,6 +21,7 @@ import java.util.List;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 //@JacksonXmlRootElement(localName = "Data") // We consider Data as the root element
+@JsonPropertyOrder({ "total_months_number", "months" })
 public class MonthsData {
 
     private static final Logger logger = Logger.getLogger ( MonthsData.class );
@@ -37,13 +38,20 @@ public class MonthsData {
 
     // Empty Constructor
 
-    public MonthsData() {}
+    public MonthsData() {
+        reset();
+    }
 
     // Constructor
 
     public MonthsData(int rows, List<Months> months) {
         this.setRows(rows);
         this.setMonths(months);
+    }
+
+    public void reset() {
+        this.setRows(0);
+        this.setMonths(null);
     }
 
     // Getters and setters

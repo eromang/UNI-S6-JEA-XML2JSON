@@ -31,13 +31,20 @@ public class MonthLabel {
 
     // Empty constructor
 
-    public MonthLabel() {}
+    public MonthLabel() {
+        reset();
+    }
 
     // Constructor
 
     public MonthLabel(String id, String monthLabelValue) {
         this.setId(id);
         this.setMonthLabelValue(monthLabelValue);
+    }
+
+    public void reset() {
+        this.setId(null);
+        this.setMonthLabelValue(null);
     }
 
     // Getters and setters

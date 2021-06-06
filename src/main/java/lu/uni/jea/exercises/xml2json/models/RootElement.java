@@ -40,13 +40,20 @@ public class RootElement {
 
     // Empty Constructor
 
-    public RootElement() {}
+    public RootElement() {
+        reset();
+    }
 
     // Constructor
 
     public RootElement(String lang, MonthsData monthsData) {
         this.setLang(lang);
         this.setMonthsData(monthsData);
+    }
+
+    public void reset() {
+        this.setLang(null);
+        this.setMonthsData(null);
     }
 
     //Other getters and setters

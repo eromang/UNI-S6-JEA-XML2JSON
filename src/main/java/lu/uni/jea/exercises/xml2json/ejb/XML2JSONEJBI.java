@@ -1,5 +1,8 @@
 package lu.uni.jea.exercises.xml2json.ejb;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import lu.uni.jea.exercises.xml2json.models.RootElement;
+
 /**
  *
  * @author Eric ROMANG
@@ -9,5 +12,8 @@ package lu.uni.jea.exercises.xml2json.ejb;
  */
 
 public interface XML2JSONEJBI {
-    public String deserializeFromXML();
+    public RootElement deserializeFromXML();
+    public String returnJson(RootElement deserializedData) throws JsonProcessingException;
+    public void debug(RootElement deserializedData);
+    public RootElement createRootElement(RootElement deserializedData);
 }

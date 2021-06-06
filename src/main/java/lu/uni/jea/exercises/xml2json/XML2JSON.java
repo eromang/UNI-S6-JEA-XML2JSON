@@ -1,6 +1,8 @@
 package lu.uni.jea.exercises.xml2json;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lu.uni.jea.exercises.xml2json.ejb.XML2JSONEJBI;
+import lu.uni.jea.exercises.xml2json.models.RootElement;
 import org.apache.log4j.Logger;
 
 import javax.ejb.EJB;
@@ -22,20 +24,35 @@ public class XML2JSON implements Serializable {
 
     private static final Logger logger = Logger.getLogger ( XML2JSON.class );
 
-    private String readXMLFile;
+    private RootElement deserializedData;
+    private RootElement createdRootElement;
+    private String returnedJSON;
 
     @EJB
     private XML2JSONEJBI xml2JSONEJBI;
 
     // Getters and setters
 
-    public String getReadXMLFile() {
-        readXMLFile = xml2JSONEJBI.deserializeFromXML();
+    public String getReturnedJSON() throws JsonProcessingException {
+
+        RootElement deserializedData = new RootElement();
+
+        // Deserialize XML file
+        deserializedData = xml2JSONEJBI.deserializeFromXML();
 
         // Debug
-        //logger.info(readXMLFile);
+        //xml2JSONEJBI.debug(deserializedData);
 
-        return readXMLFile;
+        // Create requested RootElement
+        createdRootElement = xml2JSONEJBI.createRootElement(deserializedData);
+
+        // Debug
+        //xml2JSONEJBI.debug(createdRootElement);
+
+        // Return corresponding Json file
+        returnedJSON = xml2JSONEJBI.returnJson(createdRootElement);
+
+        return returnedJSON;
     }
 
 

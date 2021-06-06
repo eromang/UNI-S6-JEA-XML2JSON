@@ -26,12 +26,18 @@ public class MonthLabels {
 
     // Empty constructor
 
-    public MonthLabels() {}
+    public MonthLabels() {
+        reset();
+    }
 
     // Constructor
 
     public MonthLabels(MonthLabel monthLabel) {
         this.setMonthLabel(monthLabel);
+    }
+
+    public void reset() {
+        this.setMonthLabel(null);
     }
 
     // Getters and Setters

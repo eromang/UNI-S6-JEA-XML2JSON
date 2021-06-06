@@ -11,8 +11,8 @@
 </h:head>
 <h:body>
    <h1>XML2JSON</h1>
-   <ui:fragment rendered="${not empty xml2json.readXMLFile}">
-      <p:inputTextarea rows="30" cols="33" value="${xml2json.readXMLFile}" />
+   <ui:fragment rendered="${not empty xml2json.returnedJSON}">
+      <p:inputTextarea rows="30" cols="33" value="${xml2json.returnedJSON}" />
    </ui:fragment>
 </h:body>
 </html>

@@ -40,6 +40,11 @@ public class MonthCell {
         this.setCellValue(cellValue);
     }
 
+    public void reset() {
+        this.setCellHeader(null);
+        this.setCellValue(0);
+    }
+
     // Getters and Setters
 
     public String getCellHeader() {
