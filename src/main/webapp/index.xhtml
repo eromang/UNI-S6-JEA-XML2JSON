@@ -10,10 +10,48 @@
    <title>UNI S6 JEA - Exercise 4 - XML2JSON - Eric ROMANG</title>
 </h:head>
 <h:body>
+
    <h1>XML2JSON</h1>
-   <ui:fragment rendered="${not empty xml2json.returnedJSON}">
-      <p:inputTextarea rows="30" cols="33" value="${xml2json.returnedJSON}" />
+   <p>Please input the year(s) of selection:</p>
+   <div>
+      <h:form>
+         <h:panelGrid columns="2">
+            <h:outputText value="Year (yyyy): " />
+            <p:inputMask id="year" value="#{xml2json.searchedYears}"/>
+            <h:commandButton value="Find"
+                             action="#{xml2json.returnFilteredJSON}"/>
+         </h:panelGrid>
+      </h:form>
+   </div>
+   <br />
+
+   <ui:fragment rendered="${not empty xml2json.returnFullJSON}">
+      <h2>Full JSON</h2>
+      <input type="button" id="dwn-btn" value="Download JSON file"/>
+      <br /><br />
+      <p:inputTextarea rows="30" cols="33" value="${xml2json.returnFullJSON}" id="json-val"/>
    </ui:fragment>
+
+   <script type="text/javascript">
+      function download(filename, text) {
+         var element = document.createElement('a');
+         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
+         element.setAttribute('download', filename);
+         element.style.display = 'none';
+         document.body.appendChild(element);
+         element.click();
+         document.body.removeChild(element);
+      }
+
+      // Start file download.
+      document.getElementById("dwn-btn").addEventListener("click", function(){
+         // Generate download of json.txt file
+         var text = document.getElementById("json-val").value;
+         var filename = "json.txt";
+         download(filename, text);
+      }, false);
+   </script>
+
 </h:body>
 </html>
 

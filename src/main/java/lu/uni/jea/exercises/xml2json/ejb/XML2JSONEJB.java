@@ -115,10 +115,10 @@ public class XML2JSONEJB implements XML2JSONEJBI {
         }
     }
 
-    public RootElement createRootElement(RootElement toCreatedRootElement) {
+    public RootElement createRootElement(RootElement toCreatedRootElement, String searchedYear) {
 
         // For testing purpose
-        String searchedYear = "2018";
+        //String searchedYear = "2018";
 
         List<Months> monthsListToAdd = new ArrayList<>();
         int nbrMatchingMonths = 0;
@@ -128,7 +128,7 @@ public class XML2JSONEJB implements XML2JSONEJBI {
         // Iterate through the months
 
         monthListSize = toCreatedRootElement.getMonthsData().getMonths().size();
-        logger.info("Total month list size is : " + monthListSize);
+        //logger.info("Total month list size is : " + monthListSize);
 
         int i = 0;
 
@@ -137,12 +137,12 @@ public class XML2JSONEJB implements XML2JSONEJBI {
             Months months = new Months(toCreatedRootElement.getMonthsData().getMonths().get(i).getMonthLabels(),
                     toCreatedRootElement.getMonthsData().getMonths().get(i).getMonthCell());
 
-            logger.info("Process " + months.getMonthLabels().getMonthLabel().getMonthLabelValue());
+            //logger.info("Process " + months.getMonthLabels().getMonthLabel().getMonthLabelValue());
 
             if (months.getMonthLabels().getMonthLabel().getMonthLabelValue().contains(searchedYear)) {
 
                 nbrMatchingMonths++;
-                logger.info("nbrMatchingMonths : " + nbrMatchingMonths);
+                //logger.info("nbrMatchingMonths : " + nbrMatchingMonths);
 
                 String monthLabelID = months.getMonthLabels().getMonthLabel().getId();
                 String monthLabelValue = months.getMonthLabels().getMonthLabel().getMonthLabelValue();

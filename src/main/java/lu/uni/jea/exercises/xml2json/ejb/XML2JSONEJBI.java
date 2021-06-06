@@ -15,5 +15,5 @@ public interface XML2JSONEJBI {
     public RootElement deserializeFromXML();
     public String returnJson(RootElement deserializedData) throws JsonProcessingException;
     public void debug(RootElement deserializedData);
-    public RootElement createRootElement(RootElement deserializedData);
+    public RootElement createRootElement(RootElement deserializedData, String searchedYear);
 }
