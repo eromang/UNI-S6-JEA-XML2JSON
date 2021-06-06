@@ -3,6 +3,7 @@ package lu.uni.jea.exercises.xml2json.ejb;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lu.uni.jea.exercises.xml2json.models.RootElement;
 
+import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -18,4 +19,5 @@ public interface XML2JSONEJBI {
     public String returnJson(RootElement deserializedData) throws JsonProcessingException;
     public void debug(RootElement deserializedData);
     public RootElement createRootElement(RootElement deserializedData, List<String> searchedYearsList);
+    public HashMap<String, String> cellHeaders();
 }
