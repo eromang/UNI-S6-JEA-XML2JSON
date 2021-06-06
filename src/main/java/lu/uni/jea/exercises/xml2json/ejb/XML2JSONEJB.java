@@ -120,7 +120,6 @@ public class XML2JSONEJB implements XML2JSONEJBI {
         // For testing purpose
         String searchedYear = "2018";
 
-        List<MonthCell> monthCellListToAdd = new ArrayList<>();
         List<Months> monthsListToAdd = new ArrayList<>();
         int nbrMatchingMonths = 0;
 
@@ -166,12 +165,11 @@ public class XML2JSONEJB implements XML2JSONEJBI {
                 //logger.info("Month cells nbr : " + nbrMonthCells);
 
                 int j = 0;
-
+                List<MonthCell> monthCellListToAdd = new ArrayList<>();
+                
                 while(j < nbrMonthCells) {
                     //logger.info("Month cell header " + months.getMonthCell().get(j).getCellHeader());
                     //logger.info("Month cell value " + months.getMonthCell().get(j).getCellValue());
-
-                    MonthCell monthCellToAdd = new MonthCell();
 
                     String monthCellHeader = months.getMonthCell().get(j).getCellHeader();
                     Double monthCellValue = months.getMonthCell().get(j).getCellValue();
@@ -179,7 +177,7 @@ public class XML2JSONEJB implements XML2JSONEJBI {
                     //logger.info("Month cell header " + monthCellHeader);
                     //logger.info("Month cell value " + monthCellValue);
 
-                    monthCellToAdd = new MonthCell(monthCellHeader, monthCellValue);
+                    MonthCell monthCellToAdd = new MonthCell(monthCellHeader, monthCellValue);
 
                     monthCellListToAdd.add(monthCellToAdd);
 
