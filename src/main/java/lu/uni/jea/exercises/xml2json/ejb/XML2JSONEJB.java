@@ -144,38 +144,24 @@ public class XML2JSONEJB implements XML2JSONEJBI {
                 nbrMatchingMonths++;
                 logger.info("nbrMatchingMonths : " + nbrMatchingMonths);
 
-                //logger.info("Value "+ months.getMonthLabels().getMonthLabel().getMonthLabelValue() + " contain " + searchedYear);
-
                 String monthLabelID = months.getMonthLabels().getMonthLabel().getId();
                 String monthLabelValue = months.getMonthLabels().getMonthLabel().getMonthLabelValue();
 
                 MonthLabel monthLabelToAdd = new MonthLabel(monthLabelID,monthLabelValue);
 
-                //logger.info("Month ID: " + monthLabelToAdd.getId());
-                //logger.info("Month value: " + monthLabelToAdd.getMonthLabelValue());
-
                 MonthLabels monthLabelsToAdd = new MonthLabels(monthLabelToAdd);
 
-                //logger.info("Month ID: " + monthLabelsToAdd.getMonthLabel().getId());
-                //logger.info("Month value: " + monthLabelsToAdd.getMonthLabel().getMonthLabelValue());
-
-                // Iterator through the Cells (C) of the month
+                // Iterate through the Cells (C) of the month
 
                 int nbrMonthCells = months.getMonthCell().size();
-                //logger.info("Month cells nbr : " + nbrMonthCells);
 
                 int j = 0;
                 List<MonthCell> monthCellListToAdd = new ArrayList<>();
-                
+
                 while(j < nbrMonthCells) {
-                    //logger.info("Month cell header " + months.getMonthCell().get(j).getCellHeader());
-                    //logger.info("Month cell value " + months.getMonthCell().get(j).getCellValue());
 
                     String monthCellHeader = months.getMonthCell().get(j).getCellHeader();
                     Double monthCellValue = months.getMonthCell().get(j).getCellValue();
-
-                    //logger.info("Month cell header " + monthCellHeader);
-                    //logger.info("Month cell value " + monthCellValue);
 
                     MonthCell monthCellToAdd = new MonthCell(monthCellHeader, monthCellValue);
 
